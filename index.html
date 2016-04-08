@@ -2,30 +2,40 @@
 <html lang="es" >
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Posgrado Psicología</title>
-    <link href="/bower_components/angular-material/angular-material.css" rel="stylesheet" >
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
   </head>
   <body ng-app="starter">
     
-        <div id="header" ng-include=" '/templates/header.html' "></div>  
+        
         <div id="menu" ng-include=" '/templates/menu.html' "></div>
-        <div id="content" ng-view></div>
-        <div id="footer" ng-include=" '/templates/footer.html' "></div>
+        <div class="container">
+          <div id="header" ng-include=" '/templates/header.html' "></div>  
+        
+          <div id="content" ng-view></div>
+        
+          <footer>
+            <div id="footer" ng-include=" '/templates/footer.html' "></div>
+          </footer>
+        </div>
         <!-- Angular Material requires Angular.js Libraries -->
         <script src="/bower_components/angular/angular.min.js"></script>
         <script src="/bower_components/angular-route/angular-route.js"></script>
-        <script src="/bower_components/angular-aria/angular-aria.js"></script>
         <script src="/bower_components/angular-animate/angular-animate.js"></script>
         <script src="/bower_components/angular-resource/angular-resource.js"></script>
         <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
         <!-- Angular Material Library -->
-        <script src="/bower_components/angular-material/angular-material.js"></script>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- Application bootstrap  -->
         <script src="app.js"></script>
         <script src="/controllers/controller.js"></script>
         <script src="/controllers/directives.js"></script>
-     
+        <script src="/js/directives/main.directives.js"></script>
+        <script src="/js//gravatar.ui.js"></script>
   </body>
 </html>

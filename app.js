@@ -1,4 +1,4 @@
-angular.module('starter', ['ngRoute', 'ngResource', 'ngAnimate', 'main.controllers'])
+angular.module('starter', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.gravatar', 'main.controllers'])
 
   .config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
@@ -9,13 +9,13 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngAnimate', 'main.controlle
           controllerAs: 'book'
         })
         .when('/students/:studentId', {
-          templateUrl: 'chapter.html',
+          templateUrl: 'templates/student.html',
           controller: 'StudentCtrl',
           controllerAs: 'chapter'
         })
         .otherwise({
           redirectTo: '/',
-          templateUrl: 'main.html',
+          templateUrl: 'templates/main.html',
           controller: 'MainCtrl'
         });
   }])
