@@ -13,8 +13,7 @@ angular.module('main.controllers', ['main.models', 'main.directives'])
     });
   })
   .controller('StudentCtrl', function ($scope, $routeParams, student) {
-    $scope.title = 'Catalogo de alumnos';
-    $scope.subtitle = 'Alumnos de posgrado psicología.';
+    $scope.title = 'Datos del alumno';
     
     var query = student.get({ id: $routeParams.studentId },function() {
       $scope.student = query.student[0];    
@@ -32,11 +31,11 @@ angular.module('main.controllers', ['main.models', 'main.directives'])
       
     $scope.title = 'Creditos y contacto';
     $scope.subtitle = 'Alumnos de posgrado psicología.';
-    $scope.author = 'Juan Carlos Tovar';
+    $scope.author = 'monsieur Tovar';
     $scope.email = 'jctovar@ired.unam.mx';
     $scope.alias = 'jctovar';
     $scope.slogan = 'Nam et ipsa scientia potestas es';
-    $scope.contact = 'twitter.com/jctovarg';
+    $scope.contact = 'follow me @jctovarg';
     $scope.url = 'https://twitter.com/jctovarg';
     
   });
