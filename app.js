@@ -13,6 +13,14 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.gravatar', 
           controller: 'StudentCtrl',
           controllerAs: 'chapter'
         })
+        .when('/about', {
+          templateUrl: 'templates/about.html',
+          controller: 'AboutCtrl'
+        })
+        .when('/credits', {
+          templateUrl: 'templates/credits.html',
+          controller: 'CreditsCtrl'
+        })
         .otherwise({
           redirectTo: '/',
           templateUrl: 'templates/main.html',
