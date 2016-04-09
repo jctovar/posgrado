@@ -1,4 +1,4 @@
-angular.module('starter', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.gravatar', 'main.controllers'])
+angular.module('starter', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.bootstrap', 'ui.gravatar', 'main.controllers'])
 
   .config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {

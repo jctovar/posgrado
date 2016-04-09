@@ -1,5 +1,4 @@
 angular.module('main.controllers', ['main.models', 'main.directives'])
-
   .controller('MainCtrl', function ($scope, $route, $routeParams, $location) {
       
       

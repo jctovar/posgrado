@@ -15,8 +15,8 @@
         <div id="menu" ng-include=" 'templates/menu.html' "></div>
         <div class="main-container container">
           <div id="header" ng-include=" 'templates/header.html' "></div>  
-        
-          <div id="content" ng-view></div>
+          
+          <div id="content" ng-view><img class="gears" src="img/loading.gif"></div>
         
           <footer>
             <div id="footer" ng-include=" 'templates/footer.html' "></div>
@@ -32,6 +32,7 @@
         <!-- Angular Material Library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
         <!-- Application bootstrap  -->
         <script src="app.js"></script>
         <script src="controllers/controller.js"></script>
