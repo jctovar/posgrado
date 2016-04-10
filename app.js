@@ -13,6 +13,21 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.bootstrap',
           controller: 'StudentCtrl',
           controllerAs: 'chapter'
         })
+        .when('/teachers', {
+          templateUrl: 'templates/teachers.html',
+          controller: 'TeachersCtrl',
+          controllerAs: 'book'
+        })
+        .when('/teachers/:teacherId', {
+          templateUrl: 'templates/teacher.html',
+          controller: 'TeacherCtrl',
+          controllerAs: 'chapter'
+        })
+        .when('/projects', {
+          templateUrl: 'templates/projects.html',
+          controller: 'ProjectsCtrl',
+          controllerAs: 'book'
+        })
         .when('/about', {
           templateUrl: 'templates/about.html',
           controller: 'AboutCtrl'

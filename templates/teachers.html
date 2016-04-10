@@ -1,0 +1,18 @@
+<h3 class="main-title">{{ title }}</h3>
+<form class="form-inline">
+    <div class="input-group">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+        <input type="search" class="form-control input-lg" placeholder="buscar..." ng-model="data.searchQuery">
+    </div>
+</form>
+  <table class="table table-hover table-condensed">  
+        <thead><tr><th>{{ subtitle }}</th></tr></thead>
+        <tbody>
+          <tr ng-repeat="teacher in teachers | filter: data.searchQuery" href="#/teachers/{{teacher.teacher_id}}">
+            <td class="main-list">{{ teacher.teacher_firstname }} {{ teacher.teacher_lastname }}<h6>{{ teacher.teacher_curp }}</h6></td>
+            <td><i>{{ teacher.teacher_email }}</i></td>
+            <td><a class="btn btn-primary btn-sm" href="#/teachers/{{ teacher.teacher_id}}" role="button">info</a></td>
+            <td><a class="btn btn-danger btn-sm" href="#/teachers/{{ teacher.teacher_id}}" role="button">editar</a></td>
+          </tr>
+        </tbody>
+  </table>

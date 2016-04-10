@@ -19,6 +19,32 @@ angular.module('main.controllers', ['main.models', 'main.directives'])
       $scope.student = query.student[0];    
     });
   })
+  
+  .controller('TeachersCtrl', function ($scope, teacher) {
+    $scope.title = 'Catalogo de profesores';
+    $scope.subtitle = 'Profesores de posgrado psicología.';
+    
+    var query = teacher.get(function() {
+      $scope.teachers = query.teacher;    
+    });
+  })
+  .controller('TeacherCtrl', function ($scope, $routeParams, teacher) {
+    $scope.title = 'Datos del profesor';
+    
+    var query = teacher.get({ id: $routeParams.teacherId },function() {
+      $scope.teacher = query.teacher[0];    
+    });
+  })
+  
+  .controller('ProjectsCtrl', function ($scope, project) {
+    $scope.title = 'Catalogo de proyectos';
+    $scope.subtitle = 'Proyectos de posgrado psicología.';
+    
+    var query = project.get(function() {
+      $scope.projects = query.project;    
+    });
+  })
+  
   .controller('AboutCtrl', function ($scope, about) {
     $scope.title = 'Directorio de la UNAM';
     $scope.subtitle = 'Universidad Nacional Autónoma de México.';
