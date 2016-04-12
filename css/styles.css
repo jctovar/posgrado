@@ -68,6 +68,15 @@ form {
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
+.main-list img {
+  float: left;
+}
+
+.main-list p {
+  padding-top: 10px;
+  line-height: 0.3;
+}
+
 .gears {
     display: block;
     margin-left: auto;
