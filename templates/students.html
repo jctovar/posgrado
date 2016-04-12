@@ -8,7 +8,7 @@
   <table class="table table-hover table-condensed">  
         <thead><tr><th>{{ subtitle }}</th></tr></thead>
         <tbody>
-          <tr ng-repeat="student in students | filter: data.searchQuery" href="#/students/{{student.student_account}}">
+          <tr ng-repeat="student in students | filter: data.searchQuery" onclick="javascript:alert({{student.student_account}})">
             <td class="main-list">{{ student.student_firstname }} {{ student.student_lastname }}<h6>{{ student.student_account }}</h6></td>
             <td><i>{{ student.student_email }}</i></td>
             <td><a class="btn btn-primary btn-sm" href="#/students/{{ student.student_account}}" role="button">info</a></td>
