@@ -1,20 +1,27 @@
-<h3 class="main-title">{{ title }}</h3>
- <div class="panel panel-primary student-profile">
-    <div class="panel-heading">
-        <h3 class="panel-title">{{ student.student_firstname }} {{ student.student_lastname }}</h3>
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title">{{content.student_firstname}} {{content.student_lastname}}</h4>
+      </div>
+      <div class="modal-body" ng-show="content">
+        <img gravatar-src="content.student_email" gravatar-size="100" alt="{{ content.student_account }}" class="detail-profile-img">
+        <table class="table">
+            <tr><td>Número de cuenta:</td><td>{{ content.student_account }}</td></tr>
+            <tr><td>Correo electrónico:</td><td><i>{{ content.student_email }}</i></td></tr>
+            <tr><td>Número telefónico:</td><td>{{ content.student_phone }}</td></tr>
+            <tr><td>Sexo:</td><td>{{ content.student_genere }}</td></tr>
+            <tr><td>Edad:</td><td>{{ content.student_age }} años</td></tr>
+            <tr><td>Entidad de nacimiento:</td><td>{{ content.student_nationality }}</td></tr>
+            <tr><td>Fecha de nacimiento:</td><td>{{ content.student_birthday | date:'fullDate' }}</td></tr>
+            <tr><td>Contraseña por defecto:</td><td>{{ content.student_password }}</td></tr>
+            <tr><td>CURP:</td><td>{{ content.student_curp }}</td></tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$hide()">Cerrar</button>
+      </div>
     </div>
-    <div class="panel-body">
-        <img gravatar-src="student.student_email" gravatar-size="100" alt="{{ student.student_account }}" class="student-profile-img img-circle">
-    </div>
-    <table class="table">
-        <tr><td>Número de cuenta:</td><td>{{ student.student_account }}</td></tr>
-        <tr><td>Correo electrónico:</td><td><i>{{ student.student_email }}</i></td></tr>
-        <tr><td>Número telefónico:</td><td>{{ student.student_phone }}</td></tr>
-        <tr><td>Sexo:</td><td>{{ student.student_genere }}</td></tr>
-        <tr><td>Edad:</td><td>{{ student.student_age }} años</td></tr>
-        <tr><td>Entidad de nacimiento:</td><td>{{ student.student_nationality }}</td></tr>
-        <tr><td>Fecha de nacimiento:</td><td>{{ student.student_birthday | date:'fullDate' }}</td></tr>
-        <tr><td>Contraseña por defecto:</td><td>{{ student.student_password }}</td></tr>
-        <tr><td>CURP:</td><td>{{ student.student_curp }}</td></tr>
-    </table>
- </div>
+  </div>
+</div>

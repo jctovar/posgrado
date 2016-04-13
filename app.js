@@ -1,4 +1,4 @@
-angular.module('starter', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.bootstrap', 'ui.gravatar', 'main.controllers'])
+angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'mgcrea.ngStrap', 'ui.gravatar', 'main.controllers'])
 
   .config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
@@ -26,6 +26,11 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.bootstrap',
         .when('/projects', {
           templateUrl: 'templates/projects.html',
           controller: 'ProjectsCtrl',
+          controllerAs: 'book'
+        })
+        .when('/courses', {
+          templateUrl: 'templates/courses.html',
+          controller: 'CoursesCtrl',
           controllerAs: 'book'
         })
         .when('/about', {

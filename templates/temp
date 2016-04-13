@@ -1,0 +1,10 @@
+
+
+
+exports.allCourses = function (req, callback) {
+        var sql = ''.concat('SELECT * ',
+                'FROM course t1 INNER JOIN school t2 INNER JOIN period t3',
+                'ON t1.school_id = t2.school_id AND t1.period_id = t3.period_id;');
+        var query = connection.query(sql, req, callback);
+        console.log(query.sql);
+};
