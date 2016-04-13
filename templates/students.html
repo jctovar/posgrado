@@ -10,13 +10,14 @@
         <tbody>
           <tr ng-repeat="student in students | filter: data.searchQuery" onclick="javascript:alert({{student.student_account}})">
             <td class="main-list">
-                <img gravatar-src="student.student_email" gravatar-size="32" alt="{{ student.student_account }}" class="student-profile-img img-circle">
+                <img gravatar-src="student.student_email" gravatar-size="48" alt="{{ student.student_account }}" class="list-profile-img">
                 <p>{{ student.student_firstname }} {{ student.student_lastname }}</p>
                 <h6>{{ student.student_account }}</h6>
                 <h6><i>{{ student.student_email }}</i></h6>
             </td>
-            <td><a class="btn btn-primary btn-sm" href="#/students/{{ student.student_account}}" role="button">info</a>
-            <a class="btn btn-danger btn-sm" href="#/students/{{ student.student_account}}" role="button">editar</a></td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="#/students/{{ student.student_account}}" role="button">editar</a>
+            </td>
           </tr>
         </tbody>
   </table>
