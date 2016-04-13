@@ -1,48 +1,57 @@
 angular.module('main.controllers', ['main.models', 'main.directives'])
-  .controller('MainCtrl', function ($scope, $route, $routeParams, $location) {
+.controller('MainCtrl', function ($scope, $route, $routeParams, $location) {
       
-      
-  })
+})
   
-  .controller('StudentsCtrl', function ($scope, $modal, student) {
+.controller('NavController', function ($scope, $location) {
+    console.log($scope)
+})
+// get all students  
+.controller('StudentsCtrl', function ($scope, $modal, student) {
     $scope.title = 'Catalogo de alumnos';
     $scope.subtitle = 'Alumnos de posgrado psicología.';
     
-    
-    
     $scope.detail = function(username) {
-      var myOtherModal = $modal({scope: $scope, templateUrl: 'templates/student.html', show: false});
-      console.log('Quiere ver detalles...' + username);
+      var detailModal = $modal({scope: $scope, templateUrl: 'templates/detail-student.html', show: false});
+
       var data = student.get({ id: username }, function() {
-          console.log(JSON.stringify(data.student[0]));
           $scope.content = data.student[0];
       })
-      //$scope.modal.username = username;
-      myOtherModal.$promise.then(myOtherModal.show);
+      detailModal.$promise.then(detailModal.show);
     };
     
     var query = student.get(function() {
       $scope.students = query.student;    
     });
   })
+  
   .controller('StudentCtrl', function ($scope, $routeParams, student) {
     $scope.title = 'Datos del alumno';
-    
-    
-    
+
     var query = student.get({ id: $routeParams.studentId },function() {
       $scope.student = query.student[0];    
     });
   })
-  
-  .controller('TeachersCtrl', function ($scope, teacher) {
+// get all teachers  
+  .controller('TeachersCtrl', function ($scope, $modal,teacher) {
     $scope.title = 'Catalogo de profesores';
     $scope.subtitle = 'Profesores de posgrado psicología.';
+   
+    $scope.detail = function(username) {
+      var detailModal = $modal({scope: $scope, templateUrl: 'templates/detail-teacher.html', show: false});
+
+      var data = teacher.get({ id: username }, function() {
+          console.log(JSON.stringify(data.teacher[0]));
+          $scope.content = data.teacher[0];
+      })
+      detailModal.$promise.then(detailModal.show);
+    };
     
     var query = teacher.get(function() {
       $scope.teachers = query.teacher;    
     });
   })
+
   .controller('TeacherCtrl', function ($scope, $routeParams, teacher) {
     $scope.title = 'Datos del profesor';
     
@@ -78,7 +87,6 @@ angular.module('main.controllers', ['main.models', 'main.directives'])
     });
   })
   .controller('CreditsCtrl', function ($scope) {
-      
     $scope.title = 'Creditos y contacto';
     $scope.subtitle = 'Alumnos de posgrado psicología.';
     $scope.author = 'monsieur Tovar';
@@ -87,5 +95,4 @@ angular.module('main.controllers', ['main.models', 'main.directives'])
     $scope.slogan = 'Nam et ipsa scientia potestas es';
     $scope.contact = 'follow me @jctovarg';
     $scope.url = 'https://twitter.com/jctovarg';
-    
   });

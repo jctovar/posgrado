@@ -1,0 +1,27 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title">{{content.teacher_firstname}} {{content.teacher_lastname}}</h4>
+      </div>
+      <div class="modal-body" ng-show="content">
+        <img gravatar-src="content.teacher_email" gravatar-size="100" alt="{{ content.teacher_account }}" class="detail-profile-img">
+        <table class="table">
+            <tr><td>Número de cuenta:</td><td>{{ content.teacher_account }}</td></tr>
+            <tr><td>Correo electrónico:</td><td><i>{{ content.teacher_email }}</i></td></tr>
+            <tr><td>Número telefónico:</td><td>{{ content.teacher_phone }}</td></tr>
+            <tr><td>Sexo:</td><td>{{ content.teacher_genere }}</td></tr>
+            <tr><td>Edad:</td><td>{{ content.teacher_age }} años</td></tr>
+            <tr><td>Entidad de nacimiento:</td><td>{{ content.teacher_nationality }}</td></tr>
+            <tr><td>Fecha de nacimiento:</td><td>{{ content.teacher_birthday | date:'fullDate' }}</td></tr>
+            <tr><td>Contraseña por defecto:</td><td>{{ content.teacher_password }}</td></tr>
+            <tr><td>CURP:</td><td>{{ content.teacher_curp }}</td></tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$hide()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

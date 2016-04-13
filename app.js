@@ -5,33 +5,28 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
       $routeProvider
         .when('/students', {
           templateUrl: 'templates/students.html',
-          controller: 'StudentsCtrl',
-          controllerAs: 'book'
+          controller: 'StudentsCtrl'
         })
         .when('/students/:studentId', {
-          templateUrl: 'templates/student.html',
+          templateUrl: 'templates/edit-student.html',
           controller: 'StudentCtrl',
           controllerAs: 'chapter'
         })
         .when('/teachers', {
           templateUrl: 'templates/teachers.html',
-          controller: 'TeachersCtrl',
-          controllerAs: 'book'
+          controller: 'TeachersCtrl'
         })
         .when('/teachers/:teacherId', {
-          templateUrl: 'templates/teacher.html',
-          controller: 'TeacherCtrl',
-          controllerAs: 'chapter'
+          templateUrl: 'templates/edit-teacher.html',
+          controller: 'TeacherCtrl'
         })
         .when('/projects', {
           templateUrl: 'templates/projects.html',
-          controller: 'ProjectsCtrl',
-          controllerAs: 'book'
+          controller: 'ProjectsCtrl'
         })
         .when('/courses', {
           templateUrl: 'templates/courses.html',
-          controller: 'CoursesCtrl',
-          controllerAs: 'book'
+          controller: 'CoursesCtrl'
         })
         .when('/about', {
           templateUrl: 'templates/about.html',
@@ -47,7 +42,6 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           controller: 'MainCtrl'
         });
   }])
-
 
 /*
 Copyright 2016 Google Inc. All Rights Reserved.

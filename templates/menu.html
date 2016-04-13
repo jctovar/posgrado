@@ -1,25 +1,22 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#/"><img src="img/unam.png"></span></a>
-      <p class="navbar-text">Posgrado Psicologia</p>
+<nav ng-controller="NavController" class="navbar navbar-default navbar-fixed-top" bs-navbar bs-collapse>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" bs-collapse-toggle>
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/"><img src="img/unam.png"></span></a>
+            <p class="navbar-text">Posgrado Psicologia</p>
+        </div>
+        <div bs-collapse-target>
+            <ul class="nav navbar-nav">
+                <li data-match-route="/students"><a href="#/students">Alumnos</a></li>
+                <li data-match-route="/teachers"><a href="#/teachers">Profesores</a></li>
+                <li data-match-route="/projects"><a href="#/projects">Proyectos</a></li>
+                <li data-match-route="/courses"><a href="#/courses">Cursos</a></li>
+            </ul>
+        </div>
     </div>
-    
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#/students">Alumnos</a></li>
-        <li><a href="#/teachers">Profesores</a></li>
-        <li><a href="#/projects">Proyectos</a></li>
-        <li><a href="#/courses">Cursos</a></li>
-      </ul>
-    </div>
-  </div>
 </nav>
