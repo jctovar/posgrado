@@ -82,7 +82,7 @@ angular.module('main.controllers', ['main.models', 'main.directives'])
   })
   
   .controller('DashboardCtrl', function ($scope, $cookies) {
-    $scope.title = 'Tablero de control';
+    $scope.title = 'Escritorio';
     
     console.log(JSON.stringify($cookies.username));
   })
