@@ -1,7 +1,15 @@
-angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'mgcrea.ngStrap', 'ui.gravatar', 'main.controllers'])
+angular.module('starter', ['ngRoute', 'ngResource', 'ngCookies', 'ngSanitize', 'ngAnimate', 'mgcrea.ngStrap', 'ui.gravatar', 'main.controllers', 'main.auth'])
+  .run(function ($rootScope, auth) {
+    //al cambiar de rutas
+    $rootScope.$on('$routeChangeStart', function()
+    {
+        //llamamos a checkStatus, el cual lo hemos definido en la factoria auth
+        //la cuál hemos inyectado en la acción run de la aplicación
+        auth.checkStatus();
+    })
+  })
 
-  .config(['$routeProvider', '$locationProvider',
-    function($routeProvider, $locationProvider) {
+  .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
       $routeProvider
         .when('/students', {
           templateUrl: 'templates/students.html',
@@ -27,6 +35,14 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         .when('/courses', {
           templateUrl: 'templates/courses.html',
           controller: 'CoursesCtrl'
+        })
+        .when('/login', {
+          templateUrl: 'templates/login.html',
+          controller: 'LoginCtrl'
+        })
+        .when('/dashboard', {
+          templateUrl: 'templates/dashboard.html',
+          controller: 'DashboardCtrl'
         })
         .when('/about', {
           templateUrl: 'templates/about.html',

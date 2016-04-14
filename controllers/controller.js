@@ -3,8 +3,11 @@ angular.module('main.controllers', ['main.models', 'main.directives'])
       
 })
   
-.controller('NavController', function ($scope, $location) {
-    console.log($scope)
+.controller('NavController', function ($scope, $location, $cookies, auth) {
+    //console.log($scope);
+    //$cookies.nombrecookie = "unodepiera";
+    //para acceder
+    console.log(JSON.stringify($cookies.username));
 })
 // get all students  
 .controller('StudentsCtrl', function ($scope, $modal, student) {
@@ -78,6 +81,12 @@ angular.module('main.controllers', ['main.models', 'main.directives'])
     });
   })
   
+  .controller('DashboardCtrl', function ($scope, $cookies) {
+    $scope.title = 'Tablero de control';
+    
+    console.log(JSON.stringify($cookies.username));
+  })
+  
   .controller('AboutCtrl', function ($scope, about) {
     $scope.title = 'Directorio de la UNAM';
     $scope.subtitle = 'Universidad Nacional Autónoma de México.';
@@ -95,4 +104,15 @@ angular.module('main.controllers', ['main.models', 'main.directives'])
     $scope.slogan = 'Nam et ipsa scientia potestas es';
     $scope.contact = 'follow me @jctovarg';
     $scope.url = 'https://twitter.com/jctovarg';
-  });
+  })
+  
+  .controller('LoginCtrl', function($scope, auth) {
+    //la función login que llamamos en la vista llama a la función
+    //login de la factoria auth pasando lo que contiene el campo
+    //de texto del formulario
+    $scope.login = function()
+    {
+        auth.login($scope.username, $scope.password);
+    }
+ 
+});;
