@@ -99,3 +99,4 @@ form {
 }
 
 
+@media (min-width: 768px) { .navbar .collapse { display: block !important; } }
