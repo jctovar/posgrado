@@ -5,8 +5,14 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngCookies', 'ngSanitize', '
     {
         //llamamos a checkStatus, el cual lo hemos definido en la factoria auth
         //la cuál hemos inyectado en la acción run de la aplicación
-        auth.checkStatus();
+        //auth.checkStatus();
     })
+  })
+  
+  .config(function () {
+    sessionStorage.account_id = 1;
+    sessionStorage.profile_id = 1;
+    
   })
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
