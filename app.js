@@ -1,5 +1,5 @@
-angular.module('starter', ['ngRoute', 'ngResource', 'ngCookies', 'ngSanitize', 'ngAnimate', 'mgcrea.ngStrap', 'ui.gravatar', 'main.controllers', 'main.auth'])
-  .run(function ($rootScope, auth) {
+angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
+  .run(function ($rootScope) {
     //al cambiar de rutas
     $rootScope.$on('$routeChangeStart', function()
     {
@@ -60,7 +60,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngCookies', 'ngSanitize', '
         })
         .otherwise({
           redirectTo: '/',
-          templateUrl: 'templates/main.html',
+          templateUrl: 'templates/main/main.html',
           controller: 'MainCtrl'
         });
   }])
