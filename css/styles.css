@@ -20,6 +20,11 @@ a {
     color: white;
 }
 
+.jumbotron-text {
+    padding: 100px;
+    
+}
+
 footer {
   font-size: xx-small;
 }
