@@ -1,6 +1,6 @@
 <div ng-include=" 'templates/partials/back.html' "></div>
 <md-content layout-padding>
-    <form name="userForm">
+    <form name="form">
         <div layout-gt-sm="row">
             <md-switch ng-true-value="1" class="md-primary" ng-model="item.teacher_enable" aria-label="habilitado" ng-change="change()">
                 Habilitado
@@ -42,36 +42,55 @@
         <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-xs>
                 <label>Nombre</label>
-                <input ng-model="item.teacher_firstname" ng-change="change()">
+                <input name="teacher_firstname" ng-model="item.teacher_firstname" type="text" ng-change="change()" capitalize md-maxlength="45" required>
+                <div ng-messages="form.teacher_firstname.$error">
+                    <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+                    <div ng-message="required">Campo requerido.</div>
+                </div>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-xs>
                 <label>Apellidos</label>
-                <input ng-model="item.teacher_lastname" ng-change="change()">
+                <input name="teacher_lastname" ng-model="item.teacher_lastname" type="text" ng-change="change()" md-maxlength="45" required>
+                <div ng-messages="form.teacher_firstname.$error">
+                    <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+                    <div ng-message="required">Campo requerido.</div>
+                </div>
             </md-input-container>
         </div>
         <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-xs>
                 <label>Correo electrónico</label>
-                <input ng-model="item.teacher_email" ng-change="change()">
+                <input name="teacher_email" ng-model="item.teacher_email" type="email" ng-change="change()" md-maxlength="45" required>
+                <div ng-messages="form.teacher_firstname.$error">
+                    <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+                    <div ng-message="required">Campo requerido.</div>
+                </div>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-xs>
                 <label>Teléfono</label>
-                <input ng-model="item.teacher_phone" ng-change="change()">
+                <input name="teacher_phone" ng-model="item.teacher_phone"type="phone" ng-change="change()" ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
+                <div ng-messages="form.teacher_firstname.$error">
+                    <div ng-message="md-pattern">El campo debe de ser un numero teléfonico</div>
+                </div>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-xs>
                 <label>CURP</label>
-                <input ng-model="item.teacher_curp" ng-change="change()">
+                <input name="teacher_curp" ng-model="item.teacher_curp" type="text" ng-change="change()" md-maxlength="18" required>
+                <div ng-messages="form.teacher_firstname.$error">
+                    <div ng-message="md-maxlength">El campo debe de ser de menos de 18 caracteres de longitud</div>
+                    <div ng-message="required">Campo requerido.</div>
+                </div>
             </md-input-container>
         </div>
         <div layout-gt-sm="row">
-            <md-input-container class="md-block">
+            <md-input-container class="md-block" flex-gt-xs>
                 <label>Extracto curricular</label>
-                <textarea ng-model="item.teacher_cv" md-maxlength="250" rows="5" ng-change="change()" md-select-on-focus></textarea>
+                <textarea name="teacher_cv" ng-model="item.teacher_cv" md-maxlength="250" rows="5" ng-change="change()" md-select-on-focus></textarea>
             </md-input-container>
         </div>
     </form>
 </md-content>
-<md-button class="md-fab md-fab-bottom-right" ng-click="save()">    
+<md-button  ng-disabled="!form.$valid" class="md-fab md-fab-bottom-right" ng-click="save()">    
   <md-icon> check </md-icon>
   <md-tooltip md-direction="top"> Aceptar </md-tooltip>
 </md-button>  
