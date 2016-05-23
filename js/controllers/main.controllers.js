@@ -73,7 +73,40 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
   });
 })
 
-.controller('TeacherCtrl', function ($scope, $location, $routeParams, $mdToast, teachers, schools, fields, grades) {
+.controller('AddTeacherCtrl', function ($scope, $location, $mdToast, teachers, schools, fields, grades) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = teachers.save($scope.item, function() {
+                  if (result.teachers.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/teachers')
+                  };
+              });            
+          } else {
+              $location.path('/teachers')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+
+    var query1 = schools.get(function() {
+        $scope.list1 = query1.schools;    
+    });
+
+    var query2 = fields.get(function() {
+        $scope.list2 = query2.fields;    
+    });
+
+    var query3 = grades.get(function() {
+        $scope.list3 = query3.grades;    
+    })
+})
+  
+.controller('EditTeacherCtrl', function ($scope, $location, $routeParams, $mdToast, teachers, schools, fields, grades) {
     $scope.counter = 0;
     
     $scope.save = function () {  

@@ -40,12 +40,12 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         })
         .when('/teacher', {
           templateUrl: 'templates/teacher.html',
-          controller: 'TeacherCtrl'
+          controller: 'AddTeacherCtrl'
         })
         .when('/teacher/:teacherId', {
           title: 'Editar profesor',
           templateUrl: 'templates/teacher.html',
-          controller: 'TeacherCtrl'
+          controller: 'EditTeacherCtrl'
         })
         .when('/projects', {
           templateUrl: 'templates/projects.html',
