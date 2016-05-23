@@ -1,5 +1,5 @@
 angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
-  .run(function ($rootScope) {
+  .run(function ($rootScope, $location) {
     //al cambiar de rutas
     $rootScope.$on('$routeChangeStart', function()
     {
@@ -7,6 +7,10 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         //la cuál hemos inyectado en la acción run de la aplicación
         //auth.checkStatus();
     })
+    
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        $rootScope.title = current.$$route.title;
+    });
   })
   
   .config(function () {
@@ -27,6 +31,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           controllerAs: 'chapter'
         })
         .when('/teachers', {
+          title: 'Profesores',
           templateUrl: 'templates/teachers.html',
           controller: 'TeachersCtrl'
         })
@@ -35,6 +40,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           controller: 'TeacherCtrl'
         })
         .when('/teacher/:teacherId', {
+          title: 'Editar profesor',
           templateUrl: 'templates/teacher.html',
           controller: 'TeacherCtrl'
         })

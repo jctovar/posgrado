@@ -29,3 +29,24 @@ angular.module('main.models', ['ngResource'])
         'update': { method:'PUT' }
     });
 })
+
+.factory('schools', function($resource, server_config) {
+	return $resource(server_config.url + '/schools/:id', { account_key : server_config.key, id : '@_id' },
+    {
+        'update': { method:'PUT' }
+    });
+})
+
+.factory('fields', function($resource, server_config) {
+	return $resource(server_config.url + '/fields/:id', { account_key : server_config.key, id : '@_id' },
+    {
+        'update': { method:'PUT' }
+    });
+})
+
+.factory('grades', function($resource, server_config) {
+	return $resource(server_config.url + '/grades/:id', { account_key : server_config.key, id : '@_id' },
+    {
+        'update': { method:'PUT' }
+    });
+})
