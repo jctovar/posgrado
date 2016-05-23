@@ -1,14 +1,29 @@
 angular.module('main.controllers', ['main.auth','main.models', 'main.directives'])
 
-.controller('MainCtrl', function ($scope, $route, $routeParams, $location) {
-      
+.controller('MainCtrl', function ($scope) {
+  $scope.openMenu = function($mdOpenMenu, ev) {
+    originatorEv = ev;
+    $mdOpenMenu(ev);
+  };
+})
+
+.controller('MenuCtrl', function ($scope) {
+  $scope.openMenu = function($mdOpenMenu, ev) {
+    originatorEv = ev;
+    $mdOpenMenu(ev);
+  };
 })
   
-.controller('NavController', function ($scope, $location) {
-    //console.log($scope);
-    //$cookies.nombrecookie = "unodepiera";
-    //para acceder
-    //console.log(JSON.stringify($cookies.username));
+.controller('NavCtrl', function ($scope, $location, $mdSidenav) {
+    $scope.toggleSidenav = function(menuId) {
+      $mdSidenav(menuId).toggle();
+    };
+})
+
+.controller('BackCtrl', function ($scope, $location, $window) {
+    $scope.back = function () {
+        $window.history.back();
+    }
 })
 // get all students  
 .controller('StudentsCtrl', function ($scope, $modal, student) {
@@ -37,30 +52,35 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
   });
 })
 
-.controller('TeachersCtrl', function ($scope, $modal,teacher) {
+.controller('TeachersCtrl', function ($scope, $location, teachers) {
   $scope.title = 'Catalogo de profesores';
-  $scope.subtitle = 'Profesores de posgrado psicología.';
+ 
+  $scope.clear = function () {
+      $scope.searchQuery = '';
+  }
   
-  $scope.detail = function(username) {
-    var detailModal = $modal({scope: $scope, templateUrl: 'templates/detail-teacher.html', show: false});
-
-    var data = teacher.get({ id: username }, function() {
-        console.log(JSON.stringify(data.teacher[0]));
-        $scope.content = data.teacher[0];
-    })
-    detailModal.$promise.then(detailModal.show);
-  };
+  $scope.add = function () {
+      $location.path('/teacher')
+  }
   
-  var query = teacher.get(function() {
-    $scope.teachers = query.teacher;    
+  $scope.edit = function (index) {
+      $location.path('/teacher/'+ $scope.items[index].teacher_id);
+  }
+  
+  var query = teachers.get(function() {
+    $scope.items = query.teachers;    
   });
 })
 
-.controller('TeacherCtrl', function ($scope, $routeParams, teacher) {
+.controller('TeacherCtrl', function ($scope, $location, $routeParams, teachers) {
   $scope.title = 'Datos del profesor';
   
-  var query = teacher.get({ id: $routeParams.teacherId },function() {
-    $scope.teacher = query.teacher[0];    
+  $scope.save = function () {
+      $location.path('/teachers')
+  }
+  
+  var query = teachers.get({ id: $routeParams.teacherId },function() {
+    $scope.teacher = query.teachers[0];    
   });
 })
 
@@ -83,6 +103,8 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
 })
 
 .controller('DashboardCtrl', function ($scope) {
+  
+    
   $scope.title = 'Escritorio';
   
   //console.log(JSON.stringify($cookies.username));

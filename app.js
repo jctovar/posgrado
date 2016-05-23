@@ -30,8 +30,12 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           templateUrl: 'templates/teachers.html',
           controller: 'TeachersCtrl'
         })
-        .when('/teachers/:teacherId', {
-          templateUrl: 'templates/edit-teacher.html',
+        .when('/teacher', {
+          templateUrl: 'templates/teacher.html',
+          controller: 'TeacherCtrl'
+        })
+        .when('/teacher/:teacherId', {
+          templateUrl: 'templates/teacher.html',
           controller: 'TeacherCtrl'
         })
         .when('/projects', {

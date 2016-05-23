@@ -9,8 +9,8 @@ angular.module('main.models', ['ngResource'])
     });
 })
 
-.factory('teacher', function($resource, server_config) {
-	return $resource(server_config.url + '/teacher/:id', { account_key : server_config.key, id : '@_id' },
+.factory('teachers', function($resource, server_config) {
+	return $resource(server_config.url + '/teachers/:id', { account_key : server_config.key, id : '@_id' },
     {
         'update': { method:'PUT' }
     });
