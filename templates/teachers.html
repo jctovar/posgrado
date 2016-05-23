@@ -4,7 +4,7 @@
     <md-input-container class="md-icon-float md-block">
         <label>Buscar...</label>
         <md-icon> search </md-icon>
-        <input ng-model="searchQuery" md-detect-hidden autofocus>
+        <input ng-model="searchQuery" md-detect-hidden md-select-on-focus autofocus>
     </md-input-container>
 </md-toolbar>
 <md-content>
@@ -33,7 +33,7 @@
       </md-list-item>
   </md-list>
 </md-content>
-<md-button class="md-fab md-mini md-fab-top-right md-warn" ng-click="clear()">    
+<md-button class="md-fab md-mini md-fab-top-right md-warn" ng-click="clear()" ng-disabled="!searchQuery">    
   <md-icon>clear</md-icon>
   <md-tooltip md-direction="top"> Limpiar busqueda </md-tooltip>
 </md-button>

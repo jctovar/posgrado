@@ -51,7 +51,7 @@
             <md-input-container class="md-block" flex-gt-xs>
                 <label>Apellidos</label>
                 <input name="teacher_lastname" ng-model="item.teacher_lastname" type="text" ng-change="change()" md-maxlength="45" required>
-                <div ng-messages="form.teacher_firstname.$error">
+                <div ng-messages="form.teacher_lastname.$error">
                     <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
                     <div ng-message="required">Campo requerido.</div>
                 </div>
@@ -61,7 +61,7 @@
             <md-input-container class="md-block" flex-gt-xs>
                 <label>Correo electrónico</label>
                 <input name="teacher_email" ng-model="item.teacher_email" type="email" ng-change="change()" md-maxlength="45" required>
-                <div ng-messages="form.teacher_firstname.$error">
+                <div ng-messages="form.teacher_email.$error">
                     <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
                     <div ng-message="required">Campo requerido.</div>
                 </div>
@@ -69,19 +69,36 @@
             <md-input-container class="md-block" flex-gt-xs>
                 <label>Teléfono</label>
                 <input name="teacher_phone" ng-model="item.teacher_phone"type="phone" ng-change="change()" ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
-                <div ng-messages="form.teacher_firstname.$error">
+                <div ng-messages="form.teacher_phone.$error">
                     <div ng-message="md-pattern">El campo debe de ser un numero teléfonico</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-xs>
                 <label>CURP</label>
                 <input name="teacher_curp" ng-model="item.teacher_curp" type="text" ng-change="change()" md-maxlength="18" required>
-                <div ng-messages="form.teacher_firstname.$error">
-                    <div ng-message="md-maxlength">El campo debe de ser de menos de 18 caracteres de longitud</div>
+                <div ng-messages="form.teacher_curp.$error">
+                    <div ng-message="md-maxlength">El campo debe de ser un CURP valido</div>
+                    <div ng-message="required">Campo requerido.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>RFC</label>
+                <input name="teacher_rfc" ng-model="item.teacher_rfc" type="text" ng-change="change()" capitalize md-maxlength="13" required>
+                <div ng-messages="form.teacher_rfc.$error">
+                    <div ng-message="md-maxlength">El campo debe de ser un RFC valido</div>
                     <div ng-message="required">Campo requerido.</div>
                 </div>
             </md-input-container>
         </div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>CVU</label>
+                <input name="teacher_cvu" ng-model="item.teacher_cvu" type="number" ng-change="change()" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                <div ng-messages="form.teacher_cvu.$error">
+                    <div ng-message="md-pattern">Ingrese un valor valido</div>
+                </div>
+            </md-input-container>
+        </div>    
         <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-xs>
                 <label>Extracto curricular</label>

@@ -1,4 +1,7 @@
 angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMessages', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
+  .config(function($mdThemingProvider) {
+    
+  })
   .run(function ($rootScope, $location) {
     //al cambiar de rutas
     $rootScope.$on('$routeChangeStart', function()

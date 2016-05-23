@@ -56,6 +56,7 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
   $scope.title = 'Catalogo de profesores';
  
   $scope.clear = function () {
+      console.log($scope.searchQuery);
       $scope.searchQuery = '';
   }
   
@@ -75,19 +76,7 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
 .controller('TeacherCtrl', function ($scope, $location, $routeParams, $mdToast, teachers, schools, fields, grades) {
     $scope.counter = 0;
     
-    $scope.save = function () {
-        var data = {};
-          data.teacher_id = $scope.item.teacher_id;
-          data.school_id = $scope.item.school_id;
-          data.field_id = $scope.item.field_id;
-          data.teacher_enable = $scope.item.teacher_enable;
-          data.teacher_firstname = $scope.item.teacher_firstname;
-          data.teacher_lastname = $scope.item.teacher_lastname;
-          data.teacher_email = $scope.item.teacher_email;
-          data.teacher_phone = $scope.item.teacher_phone;
-          data.teacher_curp = $scope.item.teacher_curp;
-          data.teacher_cv = $scope.item.teacher_cv;
-          
+    $scope.save = function () {  
           if ($scope.counter != 0) {
               var result = teachers.update($scope.item, function() {
                   if (result.teachers.affectedRows == 1) {
@@ -98,7 +87,7 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
           } else {
               $location.path('/teachers')
           }
-    }
+    };
     
     $scope.change = function() {
         $scope.counter++;
