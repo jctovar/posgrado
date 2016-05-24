@@ -18,7 +18,7 @@
           <h4>{{ item.school_name }}</h4>
           <p>{{ item.teacher_email }}</p>
         </div>
-        <div ng-include=" 'templates/partials/menu.html' "></div>
+        <div ng-include=" 'templates/partials/menu-teachers.html' "></div>
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
     <md-subheader>Profesores inactivos</md-subheader>
@@ -29,7 +29,7 @@
           <h4>{{ item.school_name }}</h4>
           <p>{{ item.teacher_email }}</p>
         </div>
-        <div ng-include=" 'templates/partials/menu.html' "></div>
+        <div ng-include=" 'templates/partials/menu-teachers.html' "></div>
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
   </md-list>

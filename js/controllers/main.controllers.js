@@ -26,22 +26,61 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
     }
 })
 // get all students  
-.controller('StudentsCtrl', function ($scope, $modal, student) {
+.controller('StudentsCtrl', function ($scope, $location, $mdDialog, $mdToast, students) {
   $scope.title = 'Catalogo de alumnos';
-  $scope.subtitle = 'Alumnos de posgrado psicología.';
   
-  $scope.detail = function(username) {
-    var detailModal = $modal({scope: $scope, templateUrl: 'templates/detail-student.html', show: false});
-
-    var data = student.get({ id: username }, function() {
-        $scope.content = data.student[0];
-    })
-    detailModal.$promise.then(detailModal.show);
+  $scope.$on('$viewContentLoaded', function ($evt, data) {
+      inito();
+  });
+ 
+  $scope.clear = function () {
+      console.log($scope.searchQuery);
+      $scope.searchQuery = '';
+  }
+  
+  $scope.add = function () {
+      $location.path('/teacher')
+  }
+  
+  $scope.edit = function (index) {
+      $location.path('/teacher/'+ index);
+  }
+  
+  $scope.delete = function(index, ev) {
+        var confirm = $mdDialog.confirm()
+            .title('Esta seguro de eliminar este registro?')
+            .textContent('El registro sera eliminado permanentemente.')
+            .ok('Si')
+            .cancel('No');
+            $mdDialog.show(confirm).then(function() {
+                    del(index);
+                }, function() {
+                console.log('You decided to keep your record.')
+            });
   };
   
-  var query = student.get(function() {
-    $scope.students = query.student;    
-  });
+  var del = function (id) {
+        teachers.delete({ id: id })
+        .$promise.then(function (result) {
+            inito();
+            $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
+        })
+        .catch(function(error) {
+             $mdToast.show($mdToast.simple().textContent('Ocurrio un error!'));
+        });    
+  }
+  
+  var inito = function () {
+        $scope.bar = false;
+        students.get()
+        .$promise.then(function (result) {
+            $scope.items = result.students;
+            $scope.bar = !$scope.bar;
+        })
+        .catch(function(error) {
+             $location.path('/login')
+        });
+   };
 })
 
 .controller('StudentCtrl', function ($scope, $routeParams, student) {

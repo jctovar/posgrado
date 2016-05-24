@@ -24,21 +24,13 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
       $routeProvider
-        .when('/students', {
-          templateUrl: 'templates/students.html',
-          controller: 'StudentsCtrl'
-        })
-        .when('/students/:studentId', {
-          templateUrl: 'templates/edit-student.html',
-          controller: 'StudentCtrl',
-          controllerAs: 'chapter'
-        })
         .when('/teachers', {
           title: 'Profesores',
           templateUrl: 'templates/teachers.html',
           controller: 'TeachersCtrl'
         })
         .when('/teacher', {
+          title: 'Agregar profesor',
           templateUrl: 'templates/teacher.html',
           controller: 'AddTeacherCtrl'
         })
@@ -46,6 +38,16 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           title: 'Editar profesor',
           templateUrl: 'templates/teacher.html',
           controller: 'EditTeacherCtrl'
+        })
+        .when('/students', {
+          title: 'Alumnos',
+          templateUrl: 'templates/students.html',
+          controller: 'StudentsCtrl'
+        })
+        .when('/students/:studentId', {
+          templateUrl: 'templates/edit-student.html',
+          controller: 'StudentCtrl',
+          controllerAs: 'chapter'
         })
         .when('/projects', {
           templateUrl: 'templates/projects.html',
