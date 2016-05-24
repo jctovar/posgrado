@@ -52,8 +52,12 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
   });
 })
 
-.controller('TeachersCtrl', function ($scope, $location, teachers) {
+.controller('TeachersCtrl', function ($scope, $location, $mdDialog, $mdToast, teachers) {
   $scope.title = 'Catalogo de profesores';
+  
+  $scope.$on('$viewContentLoaded', function ($evt, data) {
+      inito();
+  });
  
   $scope.clear = function () {
       console.log($scope.searchQuery);
@@ -68,9 +72,41 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
       $location.path('/teacher/'+ index);
   }
   
-  var query = teachers.get(function() {
-    $scope.items = query.teachers;    
-  });
+  $scope.delete = function(index, ev) {
+        var confirm = $mdDialog.confirm()
+            .title('Esta seguro de eliminar este registro?')
+            .textContent('El registro sera eliminado permanentemente.')
+            .ok('Si')
+            .cancel('No');
+            $mdDialog.show(confirm).then(function() {
+                    del(index);
+                }, function() {
+                console.log('You decided to keep your record.')
+            });
+  };
+  
+  var del = function (id) {
+        teachers.delete({ id: id })
+        .$promise.then(function (result) {
+            inito();
+            $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
+        })
+        .catch(function(error) {
+             $mdToast.show($mdToast.simple().textContent('Ocurrio un error!'));
+        });    
+  }
+  
+  var inito = function () {
+        $scope.bar = false;
+        teachers.get()
+        .$promise.then(function (result) {
+            $scope.items = result.teachers;
+            $scope.bar = !$scope.bar;
+        })
+        .catch(function(error) {
+             $location.path('/login')
+        });
+   };
 })
 
 .controller('AddTeacherCtrl', function ($scope, $location, $mdToast, teachers, schools, fields, grades) {
