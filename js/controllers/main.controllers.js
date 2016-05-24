@@ -39,11 +39,11 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
   }
   
   $scope.add = function () {
-      $location.path('/teacher')
+      $location.path('/student')
   }
   
   $scope.edit = function (index) {
-      $location.path('/teacher/'+ index);
+      $location.path('/student/'+ index);
   }
   
   $scope.delete = function(index, ev) {
@@ -83,13 +83,72 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
    };
 })
 
-.controller('StudentCtrl', function ($scope, $routeParams, student) {
-  $scope.title = 'Datos del alumno';
+.controller('AddStudentCtrl', function ($scope, $routeParams, students, schools, fields, grades) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = students.save($scope.item, function() {
+                  if (result.students.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/teachers')
+                  };
+              });            
+          } else {
+              $location.path('/teachers')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
 
-  var query = student.get({ id: $routeParams.studentId },function() {
-    $scope.student = query.student[0];    
-  });
+    var query1 = schools.get(function() {
+        $scope.list1 = query1.schools;    
+    });
+
+    var query2 = fields.get(function() {
+        $scope.list2 = query2.fields;    
+    });
+
+    var query3 = grades.get(function() {
+        $scope.list3 = query3.grades;    
+    })
 })
+
+.controller('EditStudentCtrl', function ($scope, $routeParams, students, schools, fields, grades) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = students.update($scope.item, function() {
+                  if (result.students.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/teachers')
+                  };
+              });            
+          } else {
+              $location.path('/teachers')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+
+    var query1 = schools.get(function() {
+        $scope.list1 = query1.schools;    
+    });
+
+    var query2 = fields.get(function() {
+        $scope.list2 = query2.fields;    
+    });
+
+    var query3 = grades.get(function() {
+        $scope.list3 = query3.grades;    
+    })
+})
+
 
 .controller('TeachersCtrl', function ($scope, $location, $mdDialog, $mdToast, teachers) {
   $scope.title = 'Catalogo de profesores';
