@@ -1,16 +1,16 @@
 <md-menu ng-controller="MenuCtrl" md-position-mode="target-right target">
     <md-button aria-label="Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
-        <ng-md-icon icon="more_vert"></ng-md-icon>
+        <md-icon md-svg-icon="/img/icons/ic_more_vert_black_24px.svg"></md-icon>
     </md-button>
     <md-menu-content width="4">
         <md-menu-item>
         <md-button ng-click="edit(item.teacher_id)">
-            <div layout="row"><p flex>Editar profesor</p><ng-md-icon icon="edit"></ng-md-icon></div>
+            <div layout="row"><p flex>Editar profesor</p><md-icon md-svg-icon="edit"></md-icon></div>
         </md-button>
         </md-menu-item>
         <md-menu-item>
         <md-button ng-click="delete(item.teacher_id)">
-            <div layout="row"><p flex>Eliminar profesor</p><ng-md-icon icon="delete"></ng-md-icon></div>
+            <div layout="row"><p flex>Eliminar profesor</p><md-icon md-svg-icon="delete"></md-icon></div>
         </md-button>
         </md-menu-item>
     </md-menu-content>

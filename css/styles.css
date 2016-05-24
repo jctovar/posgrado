@@ -53,3 +53,26 @@ footer a {
     margin-left: auto;
     margin-right: auto
 }
+
+.white {
+    color: white;
+}
+
+md-icon svg {
+  fill: inherit;
+}
+
+.s18 {
+  width: 18px;
+  height: 18px;
+}
+
+.s24 {
+  width: 24px;
+  height: 24px;
+}
+
+.s36 {
+  width: 36px;
+  height: 36px;
+}

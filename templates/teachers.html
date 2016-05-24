@@ -1,12 +1,12 @@
 <div ng-include=" 'templates/partials/toolbar.html' "></div>
 <div ng-include=" 'templates/partials/sidebar.html' "></div>
-<md-toolbar class="md-hue-3" md-scroll-shrink>
-    <md-input-container class="md-icon-float md-block">
+<div md-scroll-shrink>
+    <md-input-container layout-margin class="md-icon-float md-block">
         <label>Buscar...</label>
-        <md-icon> search </md-icon>
+        <md-icon md-svg-icon="search"></md-icon>
         <input ng-model="searchQuery" md-detect-hidden md-select-on-focus autofocus>
     </md-input-container>
-</md-toolbar>
+</div>
 <md-content>
   <md-progress-linear class="md-warn" md-mode="indeterminate" ng-hide="bar"> Cargando... </md-progress-linear>
   <md-list>
@@ -35,11 +35,11 @@
   </md-list>
 </md-content>
 <md-button class="md-fab md-mini md-fab-top-right md-warn" ng-click="clear()" ng-disabled="!searchQuery">    
-  <md-icon>clear</md-icon>
+  <md-icon md-svg-icon="clear" class="s18"></md-icon>
   <md-tooltip md-direction="top"> Limpiar busqueda </md-tooltip>
 </md-button>
 <md-button class="md-fab md-fab-bottom-right" ng-click="add()">    
-  <md-icon>add</md-icon>
+  <md-icon md-svg-icon="add"></md-icon>
   <md-tooltip md-direction="top"> Agregar </md-tooltip>
 </md-button>  
  

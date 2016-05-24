@@ -1,7 +1,30 @@
-angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMessages', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
+angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMessages', 'ngMaterial', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
   .config(function($mdThemingProvider) {
     
   })
+  
+  .config(function($mdIconProvider) {
+      // Configure URLs for icons specified by [set:]id.
+      $mdIconProvider
+          .icon('add', '/img/icons/ic_add_black_24px.svg')
+          //.icon('more_vert', '/img/icons/ic_more_vert_black_24px.svg')    // Register a specific icon (by name)
+          .icon('check', '/img/icons/ic_done_black_24px.svg')
+          .icon('search', '/img/icons/ic_search_black_24px.svg')
+          .icon('edit', '/img/icons/ic_mode_edit_black_24px.svg')
+          .icon('delete', '/img/icons/ic_delete_forever_black_24px.svg')
+          .icon('clear', '/img/icons/ic_clear_black_24px.svg')
+          .icon('menu', '/img/icons/ic_menu_black_24px.svg')
+  })
+  
+  .run(function($http, $templateCache){
+    // Pre-fetch icons sources by URL and cache in the $templateCache...
+    // subsequent $http calls will look there first.
+    var urls = ['/img/icons/ic_more_vert_black_24px.svg', '/img/icons/ic_mode_edit_black_24px.svg', '/img/icons/ic_delete_forever_black_24px.svg'];
+    angular.forEach(urls, function(url) {
+      $http.get(url, {cache: $templateCache});
+    });
+  })
+
   .run(function ($rootScope, $location) {
     //al cambiar de rutas
     $rootScope.$on('$routeChangeStart', function()
