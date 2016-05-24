@@ -55,6 +55,11 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           templateUrl: 'templates/courses.html',
           controller: 'CoursesCtrl'
         })
+        .when('/', {
+          title: 'Inicio',
+          templateUrl: 'templates/main/main.html',
+          controller: 'MainCtrl'
+        })
         .when('/login', {
           templateUrl: 'templates/login.html',
           controller: 'LoginCtrl'
