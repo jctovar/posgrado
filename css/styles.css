@@ -13,7 +13,7 @@ a {
 }
 
 .jumbotron {
-    background-image: url("/img/main-background.jpg");
+    background-image: url("img/main-background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
