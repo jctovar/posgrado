@@ -60,7 +60,7 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
   };
   
   var del = function (id) {
-        teachers.delete({ id: id })
+        students.delete({ id: id })
         .$promise.then(function (result) {
             inito();
             $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
@@ -83,7 +83,7 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
    };
 })
 
-.controller('AddStudentCtrl', function ($scope, $routeParams, students, schools, fields, grades) {
+.controller('AddStudentCtrl', function ($scope, $location, $routeParams, $mdToast, students, schools, fields, grades) {
     $scope.counter = 0;
     
     $scope.save = function () {  
@@ -91,11 +91,11 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
               var result = students.save($scope.item, function() {
                   if (result.students.affectedRows == 1) {
                       $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
-                      $location.path('/teachers')
+                      $location.path('/students')
                   };
               });            
           } else {
-              $location.path('/teachers')
+              $location.path('/students')
           }
     };
     
@@ -116,7 +116,7 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
     })
 })
 
-.controller('EditStudentCtrl', function ($scope, $routeParams, students, schools, fields, grades) {
+.controller('EditStudentCtrl', function ($scope, $location, $routeParams, $mdToast, students, schools, fields, grades) {
     $scope.counter = 0;
     
     $scope.save = function () {  
@@ -124,11 +124,11 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
               var result = students.update($scope.item, function() {
                   if (result.students.affectedRows == 1) {
                       $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
-                      $location.path('/teachers')
+                      $location.path('/students')
                   };
               });            
           } else {
-              $location.path('/teachers')
+              $location.path('/students')
           }
     };
     
@@ -147,6 +147,10 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
     var query3 = grades.get(function() {
         $scope.list3 = query3.grades;    
     })
+    
+    var query = students.get({ id: $routeParams.studentId },function() {
+        $scope.item = query.students[0];    
+    });
 })
 
 
