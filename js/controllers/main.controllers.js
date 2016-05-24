@@ -281,6 +281,63 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
     });
 })
 
+.controller('CoursesCtrl', function ($scope, $location, $mdDialog, $mdToast, courses) {
+  $scope.title = 'Catalogo de cursos';
+  
+  $scope.$on('$viewContentLoaded', function ($evt, data) {
+      inito();
+  });
+ 
+  $scope.clear = function () {
+      console.log($scope.searchQuery);
+      $scope.searchQuery = '';
+  }
+  
+  $scope.add = function () {
+      $location.path('/teacher')
+  }
+  
+  $scope.edit = function (index) {
+      $location.path('/teacher/'+ index);
+  }
+  
+  $scope.delete = function(index, ev) {
+        var confirm = $mdDialog.confirm()
+            .title('Esta seguro de eliminar este registro?')
+            .textContent('El registro sera eliminado permanentemente.')
+            .ok('Si')
+            .cancel('No');
+            $mdDialog.show(confirm).then(function() {
+                    del(index);
+                }, function() {
+                console.log('You decided to keep your record.')
+            });
+  };
+  
+  var del = function (id) {
+        teachers.delete({ id: id })
+        .$promise.then(function (result) {
+            inito();
+            $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
+        })
+        .catch(function(error) {
+             $mdToast.show($mdToast.simple().textContent('Ocurrio un error!'));
+        });    
+  }
+  
+  var inito = function () {
+        $scope.bar = false;
+        courses.get()
+        .$promise.then(function (result) {
+            $scope.items = result.courses;
+            $scope.bar = !$scope.bar;
+        })
+        .catch(function(error) {
+             $location.path('/login')
+        });
+   };
+})
+
 .controller('ProjectsCtrl', function ($scope, project) {
   $scope.title = 'Catalogo de proyectos';
   $scope.subtitle = 'Proyectos de posgrado psicología.';
@@ -290,14 +347,7 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
   });
 })
 
-.controller('CoursesCtrl', function ($scope, course) {
-  $scope.title = 'Catalogo de cursos';
-  $scope.subtitle = 'Cursos de posgrado psicología.';
-  
-  var query = course.get(function() {
-    $scope.courses = query.course;    
-  });
-})
+
 
 .controller('DashboardCtrl', function ($scope) {
   
