@@ -1,10 +1,14 @@
-angular.module('main.controllers', ['main.auth','main.models', 'main.directives'])
+angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives'])
 
-.controller('MainCtrl', function ($scope) {
+.controller('MainCtrl', function ($scope, $location) {
   $scope.openMenu = function($mdOpenMenu, ev) {
     originatorEv = ev;
     $mdOpenMenu(ev);
   };
+  
+  $scope.login = function (index) {
+      $location.path('/login');
+  }
 })
 
 .controller('MenuCtrl', function ($scope) {
@@ -409,6 +413,14 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
   $scope.title = 'Escritorio';
   
   //console.log(JSON.stringify($cookies.username));
+})
+
+.controller('LoginCtrl', function ($scope, $route, $location, auth) {
+      
+      
+      $scope.login = function () {
+        auth.login($scope.username, $scope.password);
+      }
 })
 
 .controller('AboutCtrl', function ($scope, about) {

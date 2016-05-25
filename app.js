@@ -97,25 +97,28 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           templateUrl: 'templates/projects.html',
           controller: 'ProjectsCtrl'
         })
+        .when('/dashboard', {
+          templateUrl: 'templates/dashboard.html',
+          controller: 'DashboardCtrl'
+        })
         .when('/', {
           title: 'Inicio',
           templateUrl: 'templates/main/main.html',
           controller: 'MainCtrl'
         })
         .when('/login', {
-          templateUrl: 'templates/login.html',
+          title: 'Autentificación',
+          templateUrl: 'templates/main/login.html',
           controller: 'LoginCtrl'
         })
-        .when('/dashboard', {
-          templateUrl: 'templates/dashboard.html',
-          controller: 'DashboardCtrl'
-        })
         .when('/about', {
-          templateUrl: 'templates/about.html',
+          title: 'Acerca del sitio',
+          templateUrl: 'templates/main/about.html',
           controller: 'AboutCtrl'
         })
         .when('/credits', {
-          templateUrl: 'templates/credits.html',
+          title: 'Crditos',
+          templateUrl: 'templates/main/credits.html',
           controller: 'CreditsCtrl'
         })
         .otherwise({

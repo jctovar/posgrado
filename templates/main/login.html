@@ -1,17 +1,33 @@
-<h3 class="main-title">{{ title }}</h3>
-<div class="panel panel-primary">
-  <div class="panel-heading">Formulario de ingreso</div>
-  <div class="panel-body">
-    <form name="loginUserForm">
-      <div class="form-group">
-        <label>Usuario</label>
-          <input type="text" required placeholder="Introduce tu usuario" class="form-control" ng-model="username">
-        </div>
-        <div class="form-group">
-          <label>Contraseña</label>
-            <input type="password" required placeholder="Introduce tu contraseña" class="form-control" ng-model="password">
-        </div>
-          <button type="submit" ng-disabled="!loginUserForm.$valid" ng-click="login(username)" class="btn btn-primary">Ingresar</button>
-    </form>
+<div layout="column" layout-fill layout-align="center center">
+  <div layout-align="center" class="md-padding" layout="row">
+    <md-content flex layout="column">
+          <img src="img/unam_256_grey.png" alt="unam logo">
+          <h1 class="title">Posgrado Psicología</h1>
+          <form name="form">
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Usuario</label>
+              <input name="account_username" ng-model="account_username" type="text" required autofocus>
+              <div ng-messages="form.account_username.$error">
+                  <div ng-message="required">Campo requerido.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Contraseña</label>
+              <input name="account_password" ng-model="account_password" type="password" required>
+              <div ng-messages="form.account_password.$error">
+                  <div ng-message="required">Es necesario.</div>
+              </div>
+            </md-input-container>
+          </form>
+          <section layout-align="center" layout="row">
+            <md-button flex ng-disabled="!loginForm.$valid" class="md-raised md-primary md-hue-2" ng-click="login()">Ingresar</md-button>
+          </section>
+          <section layout-align="center" layout="row">
+            <p>Todavia no tienes cuenta, registrate</p> 
+          </section>
+          <section layout-align="center" layout="row">
+            <a class="small" ng-href="#/"><md-icon md-svg-icon="arrow_back"></md-icon> regresar a inicio</a> 
+          </section>
+    </md-content>
   </div>
 </div>
