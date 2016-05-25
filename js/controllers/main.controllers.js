@@ -282,7 +282,7 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
 })
 
 .controller('CoursesCtrl', function ($scope, $location, $mdDialog, $mdToast, courses) {
-  $scope.title = 'Catalogo de cursos';
+  $scope.title = 'Catalogo de asignaturas';
   
   $scope.$on('$viewContentLoaded', function ($evt, data) {
       inito();
@@ -315,7 +315,7 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
   };
   
   var del = function (id) {
-        teachers.delete({ id: id })
+        courses.delete({ id: id })
         .$promise.then(function (result) {
             inito();
             $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
@@ -336,6 +336,60 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
              $location.path('/login')
         });
    };
+})
+
+.controller('AddCourseCtrl', function ($scope, $location, $mdToast, courses, categories) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = courses.save($scope.item, function() {
+                  if (result.courses.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/courses')
+                  };
+              });            
+          } else {
+              $location.path('/courses')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+
+    var query1 = categories.get(function() {
+        $scope.list1 = query1.categories;    
+    });
+})
+
+.controller('EditCourseCtrl', function ($scope, $location, $routeParams, $mdToast, courses, categories) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = courses.update($scope.item, function() {
+                  if (result.courses.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/courses')
+                  };
+              });            
+          } else {
+              $location.path('/courses')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+    
+    var query1 = categories.get(function() {
+        $scope.list1 = query1.categories;    
+    });
+    
+    var query = courses.get({ id: $routeParams.courseId },function() {
+        $scope.item = query.courses[0];    
+    });
 })
 
 .controller('ProjectsCtrl', function ($scope, project) {

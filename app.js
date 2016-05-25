@@ -79,9 +79,19 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           controller: 'EditStudentCtrl',
         })
         .when('/courses', {
-          title: 'Cursos',
+          title: 'Asignaturas',
           templateUrl: 'templates/courses.html',
           controller: 'CoursesCtrl'
+        })
+        .when('/course', {
+          title: 'Agregar asignatura',
+          templateUrl: 'templates/course.html',
+          controller: 'AddCourseCtrl'
+        })
+        .when('/course/:courseId', {
+          title: 'Editar asignatura',
+          templateUrl: 'templates/course.html',
+          controller: 'EditCourseCtrl',
         })
         .when('/projects', {
           templateUrl: 'templates/projects.html',
