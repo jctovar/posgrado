@@ -294,11 +294,11 @@ angular.module('main.controllers', ['main.auth','main.models', 'main.directives'
   }
   
   $scope.add = function () {
-      $location.path('/teacher')
+      $location.path('/course')
   }
   
   $scope.edit = function (index) {
-      $location.path('/teacher/'+ index);
+      $location.path('/course/'+ index);
   }
   
   $scope.delete = function(index, ev) {

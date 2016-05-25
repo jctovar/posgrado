@@ -11,12 +11,11 @@
   <md-progress-linear class="md-warn" md-mode="indeterminate" ng-hide="bar"> Cargando... </md-progress-linear>
   <md-list>
     <md-subheader>Asiganturas</md-subheader>
-      <md-list-item md-ink-ripple class="md-2-line" ng-repeat="item in items | filter: searchQuery">
+      <md-list-item md-ink-ripple class="md-2-line" md-long-text ng-repeat="item in items | filter: searchQuery">
         
         <div class="md-list-item-text" layout="column">
-          
-          <h4>{{ item.course_name }}</h4>
-          <p>{{ item.category_name }}</p>
+          <h4>{{ item.category_name }}</h4>
+          <p>{{ item.course_name }}</p>   
         </div>
         <div ng-include=" 'templates/partials/menu-courses.html' "></div>
         <md-divider ng-if="!$last"></md-divider>
