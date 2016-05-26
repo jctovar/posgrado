@@ -5,12 +5,12 @@ angular.module('main.auth', ['ngResource'])
         login : function(username, password)
         {
             var query = login.get({ id: username, password:  password }, function () {
-                if (query.login[0] && query.login[0].account_email) {
-                    //$cookies.put('data','1');
-                    sessionStorage.email = query.login[0].account_email;
-                    sessionStorage.id = query.login[0].account_id;
-                    sessionStorage.firstname = query.login[0].account_firstname;
-                    sessionStorage.lastname = query.login[0].account_lastname;
+                if (query.login[0] && query.login[0].user_email) {
+                    sessionStorage.email = query.login[0].user_email;
+                    sessionStorage.id = query.login[0].user_id;
+                    sessionStorage.firstname = query.login[0].user_name;
+                    sessionStorage.lastname = query.login[0].rol_id;
+                    sessionStorage.lastname = query.login[0].school_id;
                     //mandamos al dashboard
                     $location.path("/dashboard");
                 } else {
@@ -30,8 +30,10 @@ angular.module('main.auth', ['ngResource'])
         checkStatus : function()
         {
             //creamos un array con las rutas que queremos controlar
-            var rutasPrivadas = ["/dashboard","/profile","/password","/requests","/bank"];
-            console.log('path; ' + $location.path());
+            var rutasPrivadas = ["dashboard","profile","password","students","teachers","courses","student","teacher","course"];
+            console.log('this path; ' + $location.path());
+            console.log(sessionStorage.id);
+            
             if(this.in_array($location.path(),rutasPrivadas) && typeof(sessionStorage.id) == "undefined")
             {
                 $location.path("/login");
@@ -44,11 +46,10 @@ angular.module('main.auth', ['ngResource'])
         },
         in_array : function(needle, haystack)
         {
+            var needle = needle.replace(/([/][0-9]*)/g, "");
             var key = '';
-            for(key in haystack)
-            {
-                if(haystack[key] == needle)
-                {
+            for (key in haystack) {
+                if (haystack[key] == needle) {
                     return true;
                 }
             }

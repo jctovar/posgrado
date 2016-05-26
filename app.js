@@ -1,9 +1,6 @@
 angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMessages', 'ngMaterial', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
-  .config(function($mdThemingProvider) {
-    
-  })
-  
-  .config(function($mdIconProvider) {
+
+  .config(function($mdIconProvider, $mdThemingProvider) {
       // Configure URLs for icons specified by [set:]id.
       $mdIconProvider
           .icon('add', 'img/icons/ic_add_black_24px.svg')
@@ -16,34 +13,26 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           .icon('clear', 'img/icons/ic_clear_black_24px.svg')
           .icon('menu', 'img/icons/ic_menu_black_24px.svg')
   })
-  
-  .run(function($http, $templateCache){
-    // Pre-fetch icons sources by URL and cache in the $templateCache...
-    // subsequent $http calls will look there first.
-    var urls = ['img/icons/ic_more_vert_black_24px.svg', 'img/icons/ic_mode_edit_black_24px.svg', 'img/icons/ic_delete_forever_black_24px.svg'];
-    angular.forEach(urls, function(url) {
-      $http.get(url, {cache: $templateCache});
-    });
-  })
 
-  .run(function ($rootScope, $location) {
-    //al cambiar de rutas
-    $rootScope.$on('$routeChangeStart', function()
-    {
-        //llamamos a checkStatus, el cual lo hemos definido en la factoria auth
-        //la cuál hemos inyectado en la acción run de la aplicación
-        //auth.checkStatus();
-    })
-    
-    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.title = current.$$route.title;
-    });
-  })
-  
-  .config(function () {
-    sessionStorage.account_id = 1;
-    sessionStorage.profile_id = 1;
-    
+  .run(function ($rootScope, $location, auth, $http, $templateCache) {
+      //al cambiar de rutas
+      $rootScope.$on('$routeChangeStart', function()
+      {
+          //llamamos a checkStatus, el cual lo hemos definido en la factoria auth
+          //la cuál hemos inyectado en la acción run de la aplicación
+          auth.checkStatus();
+      })
+      
+      $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+          $rootScope.title = current.$$route.title;
+      });
+      
+      // Pre-fetch icons sources by URL and cache in the $templateCache...
+      // subsequent $http calls will look there first.
+      var urls = ['img/icons/ic_more_vert_black_24px.svg', 'img/icons/ic_mode_edit_black_24px.svg', 'img/icons/ic_delete_forever_black_24px.svg'];
+      angular.forEach(urls, function(url) {
+        $http.get(url, {cache: $templateCache});
+      });
   })
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
