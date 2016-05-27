@@ -8,9 +8,9 @@ angular.module('main.auth', ['ngResource'])
                 if (query.login[0] && query.login[0].user_email) {
                     sessionStorage.email = query.login[0].user_email;
                     sessionStorage.id = query.login[0].user_id;
-                    sessionStorage.firstname = query.login[0].user_name;
-                    sessionStorage.lastname = query.login[0].rol_id;
-                    sessionStorage.lastname = query.login[0].school_id;
+                    sessionStorage.name = query.login[0].user_name;
+                    sessionStorage.rol = query.login[0].rol_id;
+                    sessionStorage.school = query.login[0].school_id;
                     //mandamos al dashboard
                     $location.path("/dashboard");
                 } else {

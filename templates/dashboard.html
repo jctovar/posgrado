@@ -1,10 +1,12 @@
 <div ng-include=" 'templates/partials/toolbar.html' "></div>
 <div flex layout="row">
   <div ng-include=" 'templates/partials/sidebar.html' "></div>
-  <ul>
-    <li data-match-route="/students"><a href="#/students">Alumnos</a></li>
-    <li data-match-route="/teachers"><a href="#/teachers">Profesores</a></li>
-    <li data-match-route="/projects"><a href="#/projects">Proyectos</a></li>
-    <li data-match-route="/courses"><a href="#/courses">Cursos</a></li>
-  </ul>
+  <md-content>
+    <ul>
+      <li data-match-route="/students"><a href="#/students">Alumnos</a></li>
+      <li data-match-route="/teachers"><a href="#/teachers">Profesores</a></li>
+      <li data-match-route="/projects"><a href="#/projects">Proyectos</a></li>
+      <li data-match-route="/courses"><a href="#/courses">Cursos</a></li>
+    </ul>
+  </md-content>
 </div>

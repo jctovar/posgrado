@@ -26,18 +26,32 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     originatorEv = ev;
     $mdOpenMenu(ev);
   };
-})
+}) 
   
 .controller('NavCtrl', function ($scope, $location, $mdSidenav) {
     $scope.toggleSidenav = function(menuId) {
       $mdSidenav(menuId).toggle();
     };
+    
+    //console.log(sessionStorage.email);
+    //$scope.user_mail = 's';
 })
+
 
 .controller('BackCtrl', function ($scope, $location, $window) {
     $scope.back = function () {
         $window.history.back();
     }
+})
+
+.controller('SideCtrl', function ($scope, $location) {
+    $scope.go = function (route) {
+        console.log(route);
+        $location.path(route);
+    }
+    
+    $scope.user_name = sessionStorage.name;
+    $scope.user_email = sessionStorage.email;
 })
 // get all students  
 .controller('StudentsCtrl', function ($scope, $location, $mdDialog, $mdToast, students) {
