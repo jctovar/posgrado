@@ -1,13 +1,27 @@
 <md-toolbar layout="row" class="md-whiteframe-3dp">
   <div class="md-toolbar-tools">
-    <md-button class="md-icon-button" ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
-      <ng-md-icon icon="menu"></ng-md-icon>
-    </md-button>
+    <md-menu md-position-mode="target-right target">
+        <md-button aria-label="Menu" class="md-icon-button" md-ink-ripple hide-gt-xs ng-click="openMenu($mdOpenMenu, $event)">
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+            <md-button ng-click="go('login')">
+                <div layout="row"><p flex>Ingresar</p></div>
+            </md-button>
+            </md-menu-item>
+            <md-menu-item>
+            <md-button ng-click="go('signin')">
+                <div layout="row"><p flex>Registro</p></div>
+            </md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu> 
     <h3>UNAM ::. Posgrado Psicología</h3>
     <span flex></span>
-    <md-button ng-click="login()">
-      Ingresar
-    </md-button>
+    <span hide-xs>
+        <md-button md-ink-ripple aria-label="registro" ng-click="login()"> ingresar </md-button>
+    </span>
   </div>
 </md-toolbar>
 <md-content>
@@ -41,6 +55,11 @@
         <div flex="66" class="body">
           <h1>Oferta de cursos de posgrado </h1>
           <p>Catalogo de cursos ofertados para posgrado psicología durante le periodo 2017-1.</p>
+        </div>
+    </div>
+    <div class="prefooter" layout="row" layout-padding layout-align="center">
+        <div flex="66" layout-align="center">
+          <a href="#/about">Acerca</a> | <a href="#/credits">Directorio</a> | <a href="#/contact">Contacto</a>
         </div>
     </div>
     <div class="footer">

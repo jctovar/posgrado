@@ -6,6 +6,16 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     $mdOpenMenu(ev);
   };
   
+  $scope.go = function (value) {
+       console.log(value);
+       switch(value) {
+            case 'login':
+                $location.path('/login');
+            case 'signin':
+                $location.path('/login');
+       }
+    };
+  
   $scope.login = function (index) {
       $location.path('/login');
   }

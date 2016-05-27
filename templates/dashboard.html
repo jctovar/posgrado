@@ -1,11 +1,10 @@
 <div ng-include=" 'templates/partials/toolbar.html' "></div>
-<div ng-include=" 'templates/partials/sidebar.html' "></div>
-<md-toolbar class="md-hue-3" md-scroll-shrink>
-    <div class="md-toolbar-tools">{{ title }}</div>
-</md-toolbar>
-<ul>
-  <li data-match-route="/students"><a href="#/students">Alumnos</a></li>
-  <li data-match-route="/teachers"><a href="#/teachers">Profesores</a></li>
-  <li data-match-route="/projects"><a href="#/projects">Proyectos</a></li>
-  <li data-match-route="/courses"><a href="#/courses">Cursos</a></li>
-</ul>
+<div flex layout="row">
+  <div ng-include=" 'templates/partials/sidebar.html' "></div>
+  <ul>
+    <li data-match-route="/students"><a href="#/students">Alumnos</a></li>
+    <li data-match-route="/teachers"><a href="#/teachers">Profesores</a></li>
+    <li data-match-route="/projects"><a href="#/projects">Proyectos</a></li>
+    <li data-match-route="/courses"><a href="#/courses">Cursos</a></li>
+  </ul>
+</div>

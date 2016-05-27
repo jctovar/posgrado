@@ -102,13 +102,15 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         })
         .when('/about', {
           title: 'Acerca del sitio',
-          templateUrl: 'templates/main/about.html',
-          controller: 'AboutCtrl'
+          templateUrl: 'templates/main/about.html'
         })
         .when('/credits', {
-          title: 'Crditos',
-          templateUrl: 'templates/main/credits.html',
-          controller: 'CreditsCtrl'
+          title: 'Creditos',
+          templateUrl: 'templates/main/credits.html'
+        })
+        .when('/contact', {
+          title: 'Contacto',
+          templateUrl: 'templates/main/contact.html'
         })
         .otherwise({
           redirectTo: '/',

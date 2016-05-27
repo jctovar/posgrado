@@ -1,12 +1,31 @@
-<h3 class="main-title">{{ title }}</h3>
-
-    <div class="panel panel-default credit-profile">
-        <div class="panel-heading panel-profile" style="background-color: #028299;">
+<div layout="column" layout-fill layout-align="center center">
+  <div layout-align="center" class="md-padding" layout="row">
+    <md-content flex layout="column">
+      <div layout="row" layout-padding layout-align="center">
+        <div flex="75" class="body">
+          <img src="img/unam_256_grey.png" alt="unam logo">
+          <h1 class="title">Directorio UNAM</h1>
+            <ul class="credits">
+                <li>Dr. Enrique Graue Wiechers</li>
+                <li>RECTOR</li>
+                <li>Dr. Leonardo Lomelí Vanegas</li>
+                <li>SECRETARIO GENERAL</li>
+                <li>Ing. Leopoldo Silva Gutiérrez</li>
+                <li>SECRETARIO ADMINISTRATIVO</li>
+                <li>Dr. Alberto Ken Oyama Nakagawa</li>
+                <li>SECRETARIO DE DESARROLLO INSTITUCIONAL</li>
+                <li>Dr. César Iván Astudillo Reyes</li>
+                <li>SECRETARIO DE SERVICIOS A LA COMUNIDAD</li>
+                <li>Dra. Mónica González Contró</li>
+                <li>ABOGADO GENERAL</li>
+                <li>Lic. Néstor Martínez Cristo</li>
+                <li>DIRECTOR GENERAL DE COMUNICACIÓN SOCIAL</li>
+              </ul>
+            <div layout-align="center" layout="row">
+              <a class="small" ng-href="#/"><md-icon md-svg-icon="arrow_back"></md-icon> regresar a inicio</a> 
+            </div>
         </div>
-        <div class="panel-body text-center panel-profile-text">
-            <img gravatar-src="email" gravatar-size="100" alt="{{ alias }}" class="img-circle panel-profile-img">
-            <h5 class="panel-title">{{ author }}</h5>
-            <p><i>{{ slogan }}</i></p>
-            <a role="button" class="btn btn-primary btn-xs" href="{{url}}"><i>{{ contact}}</i></a>
-        </div>
-    </div>
+      </div>
+    </md-content>
+  </div>
+</div>

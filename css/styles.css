@@ -46,6 +46,15 @@ footer {
   color: whitesmoke;
 }
 
+.prefooter {
+  background-color: dodgerblue;
+  color: whitesmoke;
+}
+
+.prefooter a {
+    color: whitesmoke;
+}
+
 footer a {
     text-decoration:none;
     font-weight: bold; 
@@ -85,3 +94,5 @@ md-icon svg {
   width: 36px;
   height: 36px;
 }
+
+.credits {list-style-type: none;}
