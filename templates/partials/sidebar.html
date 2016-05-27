@@ -20,6 +20,9 @@
         <md-item>
             <a>
             <md-list-item md-ink-ripple layout="row" layout-align="start center" ng-click="go('dashboard')">
+              <div class="inset">
+              <md-icon md-svg-icon="dashboard"></md-icon>
+              </div>
                 <div class="inset">Inicio</div>
             </md-list-item>
             </a>
@@ -28,7 +31,7 @@
           <a>
             <md-list-item md-ink-ripple layout="row" layout-align="start center" ng-click="go(item.navigation_url)">
               <div class="inset">
-                <ng-md-icon icon="{{item.navigation_icon}}"></ng-md-icon>
+                <md-icon md-svg-icon="{{item.navigation_icon}}"></md-icon>
               </div>
               <div class="inset">{{item.navigation_name}}
               </div>
@@ -36,18 +39,26 @@
           </a>
         </md-item>
       <md-divider></md-divider>
-      <md-subheader>Administracón</md-subheader>
+      <md-subheader>Administración</md-subheader>
         <md-item ng-repeat="item in admin">
-          <a ng-href="{{item.link}}">
-            <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <md-list-item md-ink-ripple layout="row" layout-align="start center" ng-click="go(item.link)">
               <div class="inset">
-                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                </ng-md-icon><md-icon md-svg-icon="{{item.icon}}"></md-icon>
               </div>
               <div class="inset">{{item.title}}
               </div>
-            </md-item-content>
-          </a>
+            </md-list-item>
       </md-item>
+      <md-item>
+            <a>
+            <md-list-item md-ink-ripple layout="row" layout-align="start center" ng-click="logout()">
+              <div class="inset">
+              <md-icon md-svg-icon="off"></md-icon>
+              </div>
+                <div class="inset">Cerrar sesión</div>
+            </md-list-item>
+            </a>
+        </md-item>
     </md-list>
   </md-sidenav>
  </div>

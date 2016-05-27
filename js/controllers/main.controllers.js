@@ -44,11 +44,17 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     }
 })
 
-.controller('SideCtrl', function ($scope, $location, navigation) {
+.controller('SideCtrl', function ($scope, $location, navigation, auth) {
     $scope.go = function (route) {
         console.log(route);
         $location.path(route);
     }
+    
+    $scope.admin = [{link : 'my', title: 'Mi perfil', icon: 'face'},{link : 'password', title: 'Cambiar contraseña', icon: 'lock'},{link : 'account', title: 'Cuenta', icon: 'settings'}];
+    
+    $scope.logout = function () {
+          auth.logout();
+    }; 
     
     var query = navigation.get(function() {
         $scope.menu = query.navigation;    
@@ -56,6 +62,10 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     
     $scope.user_name = sessionStorage.name;
     $scope.user_email = sessionStorage.email;
+})
+
+.controller('ProfileCtrl', function ($scope) {
+    
 })
 // get all students  
 .controller('StudentsCtrl', function ($scope, $location, $mdDialog, $mdToast, students) {

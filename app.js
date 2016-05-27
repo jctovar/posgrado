@@ -12,7 +12,16 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           .icon('delete', 'img/icons/ic_delete_forever_black_24px.svg')
           .icon('clear', 'img/icons/ic_clear_black_24px.svg')
           .icon('menu', 'img/icons/ic_menu_black_24px.svg')
-          .icon('user', 'img/icons/ic_supervisor_account_black_24px.svg')
+          .icon('users', 'img/icons/ic_supervisor_account_black_24px.svg')
+          .icon('face', 'img/icons/ic_face_black_24px.svg')
+          .icon('note', 'img/icons/ic_note_black_24px.svg')
+          .icon('dashboard', 'img/icons/ic_dashboard_black_24px.svg')
+          .icon('settings', 'img/icons/ic_settings_black_24px.svg')
+          .icon('person', 'img/icons/ic_person_black_24px.svg')
+          .icon('agenda', 'img/icons/ic_view_agenda_black_24px.svg')
+          .icon('off', 'img/icons/ic_highlight_off_black_24px.svg')
+          .icon('lock', 'img/icons/ic_lock_black_24px.svg')
+          
   })
 
   .run(function ($rootScope, $location, auth, $http, $templateCache) {
@@ -90,6 +99,18 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         .when('/dashboard', {
           templateUrl: 'templates/dashboard.html',
           controller: 'DashboardCtrl'
+        })
+        .when('/my', {
+          templateUrl: 'templates/profile.html',
+          controller: 'ProfileCtrl'
+        })
+        .when('/password', {
+          templateUrl: 'templates/password.html',
+          controller: 'PasswordCtrl'
+        })
+        .when('/account', {
+          templateUrl: 'templates/account.html',
+          controller: 'AccountCtrl'
         })
         .when('/', {
           title: 'Inicio',
