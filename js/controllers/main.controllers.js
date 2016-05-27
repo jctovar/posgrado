@@ -44,11 +44,15 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     }
 })
 
-.controller('SideCtrl', function ($scope, $location) {
+.controller('SideCtrl', function ($scope, $location, navigation) {
     $scope.go = function (route) {
         console.log(route);
         $location.path(route);
     }
+    
+    var query = navigation.get(function() {
+        $scope.menu = query.navigation;    
+    });
     
     $scope.user_name = sessionStorage.name;
     $scope.user_email = sessionStorage.email;

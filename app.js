@@ -12,6 +12,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           .icon('delete', 'img/icons/ic_delete_forever_black_24px.svg')
           .icon('clear', 'img/icons/ic_clear_black_24px.svg')
           .icon('menu', 'img/icons/ic_menu_black_24px.svg')
+          .icon('user', 'img/icons/ic_supervisor_account_black_24px.svg')
   })
 
   .run(function ($rootScope, $location, auth, $http, $templateCache) {

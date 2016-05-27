@@ -25,14 +25,14 @@
             </a>
         </md-item>
         <md-item ng-repeat="item in menu">
-          <a ng-href="{{item.link}}">
-            <md-item-content md-ink-ripple layout="row" layout-align="start center">
+          <a>
+            <md-list-item md-ink-ripple layout="row" layout-align="start center" ng-click="go(item.navigation_url)">
               <div class="inset">
-                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <ng-md-icon icon="{{item.navigation_icon}}"></ng-md-icon>
               </div>
-              <div class="inset">{{item.title}}
+              <div class="inset">{{item.navigation_name}}
               </div>
-            </md-item-content>
+            </md-list-item>
           </a>
         </md-item>
       <md-divider></md-divider>

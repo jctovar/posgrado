@@ -64,3 +64,10 @@ angular.module('main.models', ['ngResource'])
         'update': { method:'PUT' }
     });
 })
+
+.factory('navigation', function($resource, server_config) {
+	return $resource(server_config.url + '/navigation/:id', { account_key : server_config.key, id : '@_id' },
+    {
+        'update': { method:'PUT' }
+    });
+})
