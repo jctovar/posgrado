@@ -13,6 +13,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           .icon('clear', 'img/icons/ic_clear_black_24px.svg')
           .icon('menu', 'img/icons/ic_menu_black_24px.svg')
           .icon('users', 'img/icons/ic_supervisor_account_black_24px.svg')
+          .icon('group', 'img/icons/ic_group_black_24px.svg')
           .icon('face', 'img/icons/ic_face_black_24px.svg')
           .icon('note', 'img/icons/ic_note_black_24px.svg')
           .icon('dashboard', 'img/icons/ic_dashboard_black_24px.svg')
@@ -47,6 +48,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
       $routeProvider
+        // Profesores
         .when('/teachers', {
           title: 'Profesores',
           templateUrl: 'templates/teachers.html',
@@ -62,6 +64,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           templateUrl: 'templates/teacher.html',
           controller: 'EditTeacherCtrl'
         })
+        // Alumnos
         .when('/students', {
           title: 'Alumnos',
           templateUrl: 'templates/students.html',
@@ -77,6 +80,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           templateUrl: 'templates/student.html',
           controller: 'EditStudentCtrl',
         })
+        // Cursos
         .when('/courses', {
           title: 'Asignaturas',
           templateUrl: 'templates/courses.html',
@@ -92,16 +96,32 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           templateUrl: 'templates/course.html',
           controller: 'EditCourseCtrl',
         })
-        .when('/projects', {
-          templateUrl: 'templates/projects.html',
-          controller: 'ProjectsCtrl'
+        // Usuarios
+        // Cursos
+        .when('/users', {
+          title: 'Usuarios',
+          templateUrl: 'templates/users.html',
+          controller: 'UsersCtrl'
         })
+        .when('/user', {
+          title: 'Agregar usuario',
+          templateUrl: 'templates/user.html',
+          controller: 'AddUserCtrl'
+        })
+        .when('/user/:userId', {
+          title: 'Editar usuario',
+          templateUrl: 'templates/user.html',
+          controller: 'EditUserCtrl',
+        })
+        
+        
         .when('/dashboard', {
           templateUrl: 'templates/dashboard.html',
           controller: 'DashboardCtrl'
         })
         .when('/my', {
-          templateUrl: 'templates/profile.html',
+          title: 'Datos personales',
+          templateUrl: 'templates/user.html',
           controller: 'ProfileCtrl'
         })
         .when('/password', {

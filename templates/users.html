@@ -12,26 +12,15 @@
     <md-content>
       <md-progress-linear class="md-warn" md-mode="indeterminate" ng-hide="bar"> Cargando... </md-progress-linear>
       <md-list>
-        <md-subheader>Profesores activos</md-subheader>
-          <md-list-item md-ink-ripple class="md-3-line" ng-repeat="item in items | filter: searchQuery | filter: { teacher_enable: 1 }">
-            <img gravatar-src="item.teacher_email" class="md-avatar" alt="{{ item.teacher_email }}">
+        <md-subheader>Usuarios</md-subheader>
+          <md-list-item md-ink-ripple class="md-3-line" ng-repeat="item in items | filter: searchQuery">
+            <img gravatar-src="item.user_email" class="md-avatar" alt="{{ item.user_email }}">
             <div class="md-list-item-text" layout="column">
-              <h3>{{ item.teacher_firstname }} {{ item.teacher_lastname }}</h3>
+              <h3>{{ item.user_name }}</h3>
               <h4>{{ item.school_name }}</h4>
-              <p>{{ item.teacher_email }}</p>
+              <p>{{ item.user_email }}</p>
             </div>
-            <div class="md-secondary md-icon-button" ng-include=" 'templates/partials/menu-teachers.html' "></div>
-            <md-divider ng-if="!$last"></md-divider>
-          </md-list-item>
-        <md-subheader>Profesores inactivos</md-subheader>
-          <md-list-item md-ink-ripple class="md-3-line" ng-repeat="item in items | filter: searchQuery | filter: { teacher_enable: 0 }">
-            <img gravatar-src="item.teacher_email" class="md-avatar" alt="{{ item.teacher_email }}">
-            <div class="md-list-item-text" layout="column">
-              <h3>{{ item.teacher_firstname }} {{ item.teacher_lastname }}</h3>
-              <h4>{{ item.school_name }}</h4>
-              <p>{{ item.teacher_email }}</p>
-            </div>
-            <div class="md-secondary md-icon-button" ng-include=" 'templates/partials/menu-teachers.html' "></div>
+            <div class="md-secondary md-icon-button" ng-include=" 'templates/partials/menu-users.html' "></div>
             <md-divider ng-if="!$last"></md-divider>
           </md-list-item>
       </md-list>
@@ -43,6 +32,6 @@
     <md-button class="md-fab md-fab-bottom-right" ng-click="add()">    
       <md-icon md-svg-icon="add"></md-icon>
       <md-tooltip md-direction="top"> Agregar </md-tooltip>
-    </md-button>  
+    </md-button>
   </div>  
-</div> 
+</div>

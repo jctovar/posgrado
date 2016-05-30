@@ -64,8 +64,33 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     $scope.user_email = sessionStorage.email;
 })
 
-.controller('ProfileCtrl', function ($scope) {
+.controller('ProfileCtrl', function ($scope, $location, $mdDialog, $mdToast, schools, users) {
+    $scope.counter = 0;
     
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = users.update($scope.item, function() {
+                  if (result.users.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/dashboard')
+                  };
+              });            
+          } else {
+              $location.path('/students')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+
+    var query1 = schools.get(function() {
+        $scope.list1 = query1.schools;    
+    });
+    
+    var query = users.get({ id: sessionStorage.id },function() {
+        $scope.item = query.users[0];    
+    });
 })
 // get all students  
 .controller('StudentsCtrl', function ($scope, $location, $mdDialog, $mdToast, students) {
@@ -431,6 +456,118 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     
     var query = courses.get({ id: $routeParams.courseId },function() {
         $scope.item = query.courses[0];    
+    });
+})
+
+// get all users  
+.controller('UsersCtrl', function ($scope, $location, $mdDialog, $mdToast, users) {
+  $scope.title = 'Catalogo de usuarios';
+  
+  $scope.$on('$viewContentLoaded', function ($evt, data) {
+      inito();
+  });
+ 
+  $scope.clear = function () {
+      console.log($scope.searchQuery);
+      $scope.searchQuery = '';
+  }
+  
+  $scope.add = function () {
+      $location.path('/user')
+  }
+  
+  $scope.edit = function (index) {
+      $location.path('/user/'+ index);
+  }
+  
+  $scope.delete = function(index, ev) {
+        var confirm = $mdDialog.confirm()
+            .title('Esta seguro de eliminar este registro?')
+            .textContent('El registro sera eliminado permanentemente.')
+            .ok('Si')
+            .cancel('No');
+            $mdDialog.show(confirm).then(function() {
+                    del(index);
+                }, function() {
+                console.log('You decided to keep your record.')
+            });
+  };
+  
+  var del = function (id) {
+        students.delete({ id: id })
+        .$promise.then(function (result) {
+            inito();
+            $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
+        })
+        .catch(function(error) {
+             $mdToast.show($mdToast.simple().textContent('Ocurrio un error!'));
+        });    
+  }
+  
+  var inito = function () {
+        $scope.bar = false;
+        users.get()
+        .$promise.then(function (result) {
+            $scope.items = result.users;
+            $scope.bar = !$scope.bar;
+        })
+        .catch(function(error) {
+             $location.path('/login')
+        });
+   };
+})
+
+.controller('AddUserCtrl', function ($scope, $location, $routeParams, $mdToast, schools, users) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = users.save($scope.item, function() {
+                  if (result.users.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/users')
+                  };
+              });            
+          } else {
+              $location.path('/users')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+    
+    var query1 = schools.get(function() {
+        $scope.list1 = query1.schools;    
+    });
+})
+
+.controller('EditUserCtrl', function ($scope, $location, $routeParams, $mdToast, schools, users) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = users.update($scope.item, function() {
+                  if (result.users.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/users')
+                  };
+              });            
+          } else {
+              $location.path('/users')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+    
+    var query1 = schools.get(function() {
+        $scope.list1 = query1.schools;    
+    });
+    
+    var query = users.get({ id: $routeParams.userId },function() {
+        $scope.item = query.users[0];    
     });
 })
 
