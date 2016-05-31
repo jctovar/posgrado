@@ -97,7 +97,6 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           controller: 'EditCourseCtrl',
         })
         // Usuarios
-        // Cursos
         .when('/users', {
           title: 'Usuarios',
           templateUrl: 'templates/users.html',
@@ -113,7 +112,22 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           templateUrl: 'templates/user.html',
           controller: 'EditUserCtrl',
         })
-        
+        // assignment
+        .when('/assignments', {
+          title: 'Asignaciones',
+          templateUrl: 'templates/assignments.html',
+          controller: 'AssignmentsCtrl'
+        })
+        .when('/assignment', {
+          title: 'Agregar asignación',
+          templateUrl: 'templates/assignment.html',
+          controller: 'AddAssignmentCtrl'
+        })
+        .when('/assignment/:userId', {
+          title: 'Editar asignación',
+          templateUrl: 'templates/assignment.html',
+          controller: 'EditAssignmentCtrl',
+        })
         
         .when('/dashboard', {
           templateUrl: 'templates/dashboard.html',

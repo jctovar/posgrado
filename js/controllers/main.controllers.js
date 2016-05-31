@@ -543,6 +543,118 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     });
 })
 
+// get all assignments  
+.controller('AssignmentsCtrl', function ($scope, $location, $mdDialog, $mdToast, assignments) {
+  $scope.title = 'Catalogo de usuarios';
+  
+  $scope.$on('$viewContentLoaded', function ($evt, data) {
+      inito();
+  });
+ 
+  $scope.clear = function () {
+      console.log($scope.searchQuery);
+      $scope.searchQuery = '';
+  }
+  
+  $scope.add = function () {
+      $location.path('/assignment')
+  }
+  
+  $scope.edit = function (index) {
+      $location.path('/assignment/'+ index);
+  }
+  
+  $scope.delete = function(index, ev) {
+        var confirm = $mdDialog.confirm()
+            .title('Esta seguro de eliminar este registro?')
+            .textContent('El registro sera eliminado permanentemente.')
+            .ok('Si')
+            .cancel('No');
+            $mdDialog.show(confirm).then(function() {
+                    del(index);
+                }, function() {
+                console.log('You decided to keep your record.')
+            });
+  };
+  
+  var del = function (id) {
+        assignments.delete({ id: id })
+        .$promise.then(function (result) {
+            inito();
+            $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
+        })
+        .catch(function(error) {
+             $mdToast.show($mdToast.simple().textContent('Ocurrio un error!'));
+        });    
+  }
+  
+  var inito = function () {
+        $scope.bar = false;
+        assignments.get()
+        .$promise.then(function (result) {
+            $scope.items = result.assignments;
+            $scope.bar = !$scope.bar;
+        })
+        .catch(function(error) {
+             $location.path('/login')
+        });
+   };
+})
+
+.controller('AddAssignmentCtrl', function ($scope, $location, $routeParams, $mdToast, schools, assignments) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = users.save($scope.item, function() {
+                  if (result.users.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/users')
+                  };
+              });            
+          } else {
+              $location.path('/users')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+    
+    var query1 = schools.get(function() {
+        $scope.list1 = query1.schools;    
+    });
+})
+
+.controller('EditAssignmentCtrl', function ($scope, $location, $routeParams, $mdToast, schools, assignments) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = users.update($scope.item, function() {
+                  if (result.users.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/users')
+                  };
+              });            
+          } else {
+              $location.path('/users')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+    
+    var query1 = schools.get(function() {
+        $scope.list1 = query1.schools;    
+    });
+    
+    var query = users.get({ id: $routeParams.userId },function() {
+        $scope.item = query.users[0];    
+    });
+})
+
 .controller('ProjectsCtrl', function ($scope, project) {
   $scope.title = 'Catalogo de proyectos';
   $scope.subtitle = 'Proyectos de posgrado psicología.';

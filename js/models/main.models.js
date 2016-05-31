@@ -16,6 +16,13 @@ angular.module('main.models', ['ngResource'])
     });
 })
 
+.factory('assignments', function($resource, server_config) {
+	return $resource(server_config.url + '/assignments/:id', { account_key : server_config.key, id : '@_id' },
+    {
+        'update': { method:'PUT' }
+    });
+})
+
 .factory('projects', function($resource, server_config) {
 	return $resource(server_config.url + '/projects/:id', { account_key : server_config.key, id : '@_id' },
     {
