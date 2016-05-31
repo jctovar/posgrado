@@ -64,34 +64,6 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     $scope.user_email = sessionStorage.email;
 })
 
-.controller('ProfileCtrl', function ($scope, $location, $mdDialog, $mdToast, schools, users) {
-    $scope.counter = 0;
-    
-    $scope.save = function () {  
-          if ($scope.counter != 0) {
-              var result = users.update($scope.item, function() {
-                  if (result.users.affectedRows == 1) {
-                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
-                      $location.path('/dashboard')
-                  };
-              });            
-          } else {
-              $location.path('/students')
-          }
-    };
-    
-    $scope.change = function() {
-        $scope.counter++;
-    };
-
-    var query1 = schools.get(function() {
-        $scope.list1 = query1.schools;    
-    });
-    
-    var query = users.get({ id: sessionStorage.id },function() {
-        $scope.item = query.users[0];    
-    });
-})
 // get all students  
 .controller('StudentsCtrl', function ($scope, $location, $mdDialog, $mdToast, students) {
   $scope.title = 'Catalogo de alumnos';
@@ -580,7 +552,59 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
   });
 })
 
+.controller('ProfileCtrl', function ($scope, $location, $mdDialog, $mdToast, schools, users) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = users.update($scope.item, function() {
+                  if (result.users.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('/dashboard')
+                  };
+              });            
+          } else {
+              $location.path('/students')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
 
+    var query1 = schools.get(function() {
+        $scope.list1 = query1.schools;    
+    });
+    
+    var query = users.get({ id: sessionStorage.id },function() {
+        $scope.item = query.users[0];    
+    });
+})
+
+.controller('PasswordCtrl', function ($scope, $mdToast, users) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = users.update($scope.item, function() {
+                  if (result.users.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('dashboard')
+                  };
+              });            
+          } else {
+              $location.path('/users')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+    
+    var query = users.get({ id: sessionStorage.id },function() {
+        $scope.item = query.users[0];    
+    });
+})
 
 .controller('DashboardCtrl', function ($scope) {
   
